@@ -1,5 +1,7 @@
-This program implements a basic expression calculator.
-Input from cin; output to cout.
+ * This program implements a basic expression calculator.
+ * Input from cin; output to cout.
+ * This program is my realization of the concepts presented in the book
+ * of "Programming - Principles and Practice Using C++" by Bjarne Stroustrup.
 
     The grammar for input is:
 
