@@ -2,6 +2,9 @@
  * File: Calculator.cpp
  * ---------------------------
  * This program simulates an electronic calculator.
+ * Using only IOStream.
+ * Operations: addition, subtraction, multiplication, division, operations in brackets.
+ *
  */
 
 #include <iostream>
@@ -12,9 +15,9 @@ using namespace std;
 /* Function prototypes */
 
 double number(); // Realizes a number, from input stream
-double expr(); // Realizes operations of addition and subtraction
-double skobki(); // Realizes brackets
-double factor(); // Realizes the operations of multiplication and division
+double expression(); // Realizes operations of addition and subtraction
+double brackets(); // Realizes brackets
+double term(); // Realizes the operations of multiplication and division
 void help(); // Displays the HELP
 
 /* Main program */
@@ -24,7 +27,7 @@ int main() {
     help();
 
     do {
-        double result = expr();
+        double result = expression();
 
         cout << " Result : " << result << endl << endl;
         if (result != 0) cout << " Enter expression: ";
@@ -53,21 +56,21 @@ double number() {
 }
 
 /*
-* Function: expr()
-* Usage: expr();
+* Function: expression()
+* Usage: expression();
 * ---------------------------------------
 * Realizes operations of addition and subtraction.
 */
-double expr() {
-    double x = factor();
+double expression() {
+    double x = term();
     while (true) {
         char c = cin.get();
         switch (c) {
         case '+':
-            x += factor();
+            x += term();
             break;
         case '-':
-            x -= factor();
+            x -= term();
             break;
         default:
             cin.putback(c);
@@ -77,15 +80,15 @@ double expr() {
 }
 
 /*
-* Function: skobki()
-* Usage: skobki();
+* Function: brackets()
+* Usage: brackets();
 * ---------------------------------------
 * Realizes brackets.
 */
-double skobki() {
+double brackets() {
     char c = cin.get();
     if (c == '(') {
-        double x = expr();
+        double x = expression();
         cin.get();
         return x;
     }
@@ -95,21 +98,21 @@ double skobki() {
     }
 }
 /*
-* Function: skobki()
-* Usage: skobki();
+* Function: brackets()
+* Usage: brackets();
 * ---------------------------------------
 * Realizes the operations of multiplication and division.
 */
-double factor() {
-    double x = skobki();
+double term() {
+    double x = brackets();
     while (true) {
         char c = cin.get();
         switch (c) {
         case '*':
-            x *= skobki();
+            x *= brackets();
             break;
         case '/':
-            x /= skobki();
+            x /= brackets();
             break;
         default:
             cin.putback(c);
